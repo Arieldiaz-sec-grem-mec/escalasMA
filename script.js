@@ -17,11 +17,6 @@ document.addEventListener('DOMContentLoaded', function () {
         };
     }
 
-    // Función para convertir el enlace de Google Drive a un enlace de imagen
-    function getGoogleDriveImageUrl(fileId) {
-        return `https://drive.google.com/uc?export=view&id=${fileId}`;
-    }
-
     // Cargar los datos en la página
     const data = getQueryParams();
     document.getElementById('id').textContent = data.id;
@@ -38,27 +33,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 const url = archivoData.Url;
                 const linkText = archivoData.LinkText || 'Ver archivo';
 
-                // Verificar si el archivo es un enlace de Google Drive
-                const driveFileIdMatch = url.match(/\/d\/(.*?)(\/|$)/);
-                if (driveFileIdMatch) {
-                    const fileId = driveFileIdMatch[1];
-                    const directUrl = getGoogleDriveImageUrl(fileId);
-
-                    // Mostrar miniatura si es una imagen
-                    if (url.endsWith('.pdf')) {
-                        archivoElement.textContent = linkText;
-                        archivoElement.innerHTML = `<a href="${url}" target="_blank">${linkText}</a>`;
-                    } else {
-                        archivoElement.innerHTML = `<img id="archivo-thumbnail" src="${directUrl}" alt="Imagen del archivo" style="max-width: 200px;">`;
-                    }
+                // Mostrar miniatura si es una imagen
+                if (url.endsWith('.pdf')) {
+                    archivoElement.textContent = linkText;
+                    archivoElement.innerHTML = `<a href="${url}" target="_blank">${linkText}</a>`;
                 } else {
-                    // Manejo general de imágenes si no es un enlace de Google Drive
-                    if (url.endsWith('.pdf')) {
-                        archivoElement.textContent = linkText;
-                        archivoElement.innerHTML = `<a href="${url}" target="_blank">${linkText}</a>`;
-                    } else {
-                        archivoElement.innerHTML = `<img id="archivo-thumbnail" src="${url}" alt="Imagen del archivo" style="max-width: 200px;">`;
-                    }
+                    archivoElement.innerHTML = `<img id="archivo-thumbnail" src="${url}" alt="Imagen del archivo" style="max-width: 200px;">`;
                 }
             } else {
                 archivoElement.textContent = 'No disponible';
