@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #6e9553fc;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    /* Ajusta este valor para cambiar el tamaño del texto */
+}
+
+.container {
+    background-color: #fff;
+    color: #000;
+    width: calc(210mm - 2cm);
+    /* A4 width minus 2cm (1cm each side) */
+    height: calc(297mm - 2cm);
+    /* A4 height minus 2cm (1cm each side) */
+    margin: 20mm auto;
+    /* Centers the container with 1cm margins on all sides */
+    padding: 20px;
+    border-radius: 15px;
+    /* Rounded corners */
+    border: 2px solid #000;
+    /* Black border */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Shadow for a 3D effect */
+    box-sizing: border-box;
+    /* Ensures padding and border are included in the width */
+    font-size: 18px;
+    /* Ajusta este valor para cambiar el tamaño del texto */
+}
+
+h1,
+h4 {
+    text-align: center;
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+h1 {
+    color: #1d1d1f;
+    font-size: 26px;
+    /* Tamaño de texto del título principal */
+}
+
+h4 {
+    color: #6e6e73;
+    font-size: 20px;
+    /* Tamaño de texto del subtítulo */
+}
+
+p {
+    font-size: 18px;
+    /* Tamaño de texto de los párrafos */
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+p strong {
+    color: #333;
+    font-size: 18px;
+    /* Tamaño de texto de los textos en negrita */
+}
+
+img#archivo-thumbnail {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #444;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    /* Tamaño del texto del botón */
+}
+
+button:hover {
+    background-color: #555;
+}
+
+@media print {
+    body {
+        background-color: #fff;
+        color: #000;
+        font-size: 18px;
+        /* Ajusta este valor para cambiar el tamaño del texto al imprimir */
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .container {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        /* Radio de borde más profesional */
+        margin: 10mm auto;
+        /* Margen adecuado para impresión */
+        width: calc(210mm - 20mm);
+        /* A4 width minus 20mm (10mm each side) */
+        height: calc(270mm - 20mm);
+        /* A4 height minus 20mm (10mm each side) */
+        padding: 15px;
+        /* Ajusta el padding para evitar el desbordamiento */
+        border: 1px solid #000;
+        /* Borde más delgado y profesional */
+        box-sizing: border-box;
+        overflow: hidden;
+        /* Evita el desbordamiento del contenido */
+    }
+
+    button {
+        display: none;
+    }
+}
