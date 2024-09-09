@@ -4,28 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informe de Consulta</title>
+    <title>Escala Salarial</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>Informe de Consulta web</h1>
-        <h4>Sistema gesition de consultas</h4>
-
-        <p><strong>ID:</strong> <span id="id"></span></p>
-        <p><strong>Nombre y apellido:</strong> <span id="nombre"></span></p>
-        <p><strong>Afiliado:</strong> <span id="afiliado"></span></p>
-        <p><strong>Consulta:</strong> <span id="consulta"></span></p>
-        <p><strong>Archivo:</strong> <span id="archivo"></span></p>
-        <p><strong>Actividad:</strong> <span id="actividad"></span></p>
-        <p><strong>Empresa:</strong> <span id="empresa"></span></p>
-        <p><strong>Fecha:</strong> <span id="fecha"></span></p>
-        <p><strong>Estado:</strong> <span id="estado"></span></p>
-        <p><strong>Email:</strong> <span id="email"></span></p>
-        <p><strong>Respuesta:</strong> <span id="respuesta"></span></p>
-
-        <button onclick="window.print()">Imprimir</button>
+        <h1>Escala Salarial</h1>
+        <div id="data-list">
+            <!-- Los datos se cargarán aquí -->
+        </div>
+        <div id="detail-view" class="hidden">
+            <button id="close-detail">Cerrar</button>
+            <button id="copy-detail">Copiar</button>
+            <div id="detail-content">
+                <!-- Detalles de la fila seleccionada se cargarán aquí -->
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
