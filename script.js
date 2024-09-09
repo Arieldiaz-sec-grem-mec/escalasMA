@@ -1,59 +1,98 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Función para obtener parámetros de la URL
-    function getQueryParams() {
-        const params = new URLSearchParams(window.location.search);
-        return {
-            id: params.get('id'),
-            nombre: params.get('nombre'),
-            afiliado: params.get('afiliado'),
-            consulta: params.get('consulta'),
-            archivo: params.get('archivo'),
-            actividad: params.get('actividad'),
-            empresa: params.get('empresa'),
-            fecha: params.get('fecha'),
-            estado: params.get('estado'),
-            email: params.get('email'),
-            respuesta: params.get('respuesta')
-        };
-    }
+document.addEventListener("DOMContentLoaded", () => {
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQlLYnwCnBMNbbtLUspbZXIOJqO6iIIUq7F9Ogto42qmfF4wJ-U-EqD1VrIGhBImQ1fcKovodQ2TtLV/pub?gid=0&single=true&output=csv';
+    const dataList = document.getElementById('data-list');
+    const detailView = document.getElementById('detail-view');
+    const detailContent = document.getElementById('detail-content');
+    const closeDetailBtn = document.getElementById('close-detail');
+    const copyDetailBtn = document.getElementById('copy-detail');
 
-    // Cargar los datos en la página
-    const data = getQueryParams();
-    document.getElementById('id').textContent = data.id;
-    document.getElementById('nombre').textContent = data.nombre;
-    document.getElementById('afiliado').textContent = data.afiliado ? data.afiliado : 'No disponible';
-    document.getElementById('consulta').textContent = data.consulta;
+    fetch(sheetUrl)
+        .then(response => response.text())
+        .then(data => {
+            const rows = parseCSV(data);
+            let listHtml = '';
 
-    // Manejo del archivo
-    const archivoElement = document.getElementById('archivo');
-    if (data.archivo) {
-        try {
-            const archivoData = JSON.parse(data.archivo);
-            if (archivoData.Url) {
-                const url = archivoData.Url;
-                const linkText = archivoData.LinkText || 'Ver archivo';
+            // Generar el HTML para cada ítem de datos
+            rows.slice(1).forEach(row => {
+                listHtml += `<div class="data-item" data-row='${JSON.stringify(row)}'>${row[0]}</div>`;
+            });
 
-                // Mostrar miniatura si es una imagen
-                if (url.endsWith('.pdf')) {
-                    archivoElement.textContent = linkText;
-                    archivoElement.innerHTML = `<a href="${url}" target="_blank">${linkText}</a>`;
-                } else {
-                    archivoElement.innerHTML = `<img id="archivo-thumbnail" src="${url}" alt="Imagen del archivo" style="max-width: 200px;">`;
+            dataList.innerHTML = listHtml;
+
+            // Añadir evento de clic a los ítems de datos
+            dataList.addEventListener('click', event => {
+                if (event.target.classList.contains('data-item')) {
+                    const row = JSON.parse(event.target.getAttribute('data-row'));
+                    const headers = [
+                        'Categoria',
+                        'Sueldo básico mensual',
+                        'Sueldo básico jornal',
+                        'Hora ex. 50 %',
+                        'Hora ex. 100 %',
+                        'Viatico', // Cambia "Columna 6" por el nombre real de la columna
+                        'Comida'  // Cambia "Columna 7" por el nombre real de la columna
+                    ];
+
+                    // Mostrar los detalles en el modal
+                    detailContent.innerHTML = headers.map((header, index) =>
+                        `<p class="label">${header} : ${row[index] || ''}</p>`
+                    ).join('');
+                    detailView.classList.remove('hidden');
+                    detailView.style.transform = 'scale(1)'; // Restablece el efecto de acercamiento
                 }
-            } else {
-                archivoElement.textContent = 'No disponible';
-            }
-        } catch (e) {
-            archivoElement.textContent = 'No disponible';
+            });
+
+            // Añadir evento para cerrar la vista de detalles
+            closeDetailBtn.addEventListener('click', () => {
+                detailView.classList.add('hidden');
+            });
+
+            // Añadir evento para copiar los detalles al portapapeles
+            copyDetailBtn.addEventListener('click', () => {
+                const textToCopy = detailContent.innerText;
+
+                navigator.clipboard.writeText(textToCopy).then(() => {
+                    alert('Detalles copiados al portapapeles.');
+                }).catch(err => {
+                    console.error('Error al copiar al portapapeles: ', err);
+                });
+            });
+        })
+        .catch(error => {
+            console.error('Error al cargar los datos:', error);
+            dataList.innerHTML = '<div>No se pudieron cargar los datos.</div>';
+        });
+});
+
+// Función para parsear el CSV
+function parseCSV(data) {
+    const rows = [];
+    let row = [];
+    let cell = '';
+    let insideQuote = false;
+
+    for (const char of data) {
+        if (char === '"') {
+            insideQuote = !insideQuote;
+        } else if (char === ',' && !insideQuote) {
+            row.push(cell.trim());
+            cell = '';
+        } else if (char === '\n' && !insideQuote) {
+            row.push(cell.trim());
+            rows.push(row);
+            row = [];
+            cell = '';
+        } else {
+            cell += char;
         }
-    } else {
-        archivoElement.textContent = 'No disponible';
     }
 
-    document.getElementById('actividad').textContent = data.actividad;
-    document.getElementById('empresa').textContent = data.empresa;
-    document.getElementById('fecha').textContent = data.fecha;
-    document.getElementById('estado').textContent = data.estado;
-    document.getElementById('email').textContent = data.email ? data.email : 'No disponible';
-    document.getElementById('respuesta').textContent = data.respuesta;
-});
+    if (cell) {
+        row.push(cell.trim());
+    }
+    if (row.length) {
+        rows.push(row);
+    }
+
+    return rows;
+}
