@@ -1,146 +1,99 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #7a9a39;
-    /* Fondo gris claro */
-    color: #333;
-    /* Texto gris oscuro */
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    margin: 20px;
+    background-color: #f4f4f4;
 }
 
 .container {
-    width: 100%;
-    max-width: 600px;
-    background: #ffffff;
-    /* Fondo blanco */
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
+    background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Sombra suave */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #000;
-    /* Texto negro */
-    font-size: 24px;
-}
-
-#data-list {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-}
-
-.data-item {
-    background: #f5f5f5;
-    /* Fondo gris muy claro */
-    padding: 15px;
-    margin-bottom: 10px;
-    border-radius: 12px;
-    /* Bordes redondeados para efecto de botón */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    /* Sombra más oscura */
-    cursor: pointer;
-    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
-}
-
-.data-item:hover {
-    background: #e0e0e0;
-    /* Fondo gris claro al pasar el cursor */
-    transform: translateY(-2px);
-    /* Efecto de elevación */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-    /* Sombra más oscura al pasar el cursor */
-}
-
-#detail-view {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.95);
-    /* Fondo blanco con ligera transparencia */
-    color: #000;
-    /* Texto negro */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    transition: transform 0.3s;
-    transform: scale(0.95);
-}
-
-#detail-view.hidden {
-    display: none;
-}
-
-#close-detail {
-    background: #ff5c5c;
-    /* Botón rojo claro */
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    font-size: 18px;
-    align-self: flex-start;
-    transition: background 0.3s;
-}
-
-#close-detail:hover {
-    background: #e14e4e;
-    /* Color más oscuro al pasar el cursor */
-}
-
-.detail-content {
-    width: 100%;
-    max-width: 500px;
-    background: #ffffff;
-    /* Fondo blanco */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.detail-content p {
-    margin: 10px 0;
-    line-height: 1.5;
-    /* Mejor separación entre líneas */
-}
-
-.detail-content .label {
-    font-weight: bold;
+h2 {
     color: #333;
-    /* Texto gris oscuro */
-    font-size: 16px;
 }
 
-#copy-detail {
-    background: #4caf50;
-    /* Botón verde */
-    color: #fff;
+.nav-btn {
+    background-color: #4CAF50;
+    color: white;
     border: none;
     padding: 10px 20px;
+    margin: 10px;
     border-radius: 5px;
     cursor: pointer;
-    margin-bottom: 20px;
-    font-size: 18px;
-    align-self: flex-start;
-    transition: background 0.3s;
 }
 
-#copy-detail:hover {
-    background: #45a049;
-    /* Color más oscuro al pasar el cursor */
+.nav-btn:hover {
+    background-color: #45a049;
+}
+
+.category-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.category-field {
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.details-field {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.detail-item {
+    margin-bottom: 10px;
+}
+
+.calculation-form {
+    margin-top: 20px;
+}
+
+.calculation-form label {
+    display: block;
+    margin-top: 10px;
+}
+
+.calculation-form input {
+    padding: 8px;
+    width: 100%;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#calculate-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    margin-top: 20px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#calculate-btn:hover {
+    background-color: #45a049;
+}
+
+.result-box {
+    background-color: #e0ffe0;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    border: 1px solid #cccccc;
+}
+
+.result-box h3 {
+    margin-bottom: 10px;
 }
