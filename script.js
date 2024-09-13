@@ -83,7 +83,7 @@ calculateBtn.addEventListener('click', () => {
     const antiguedadPorc = antiguedad * 0.01; // 1% por cada año
     const antiguedadTotal = (jornalTotal + totalHorasExtra50 + totalHorasExtra100 + adicionalCct1 + adicionalCct2 + adicionalCct3) * antiguedadPorc;
 
-    const totalSueldo = salarioBasico + jornalTotal + adicionalCct1 + adicionalCct2 + adicionalCct3 + totalHorasExtra50 + totalHorasExtra100 + antiguedadTotal;
+    const totalSueldo =jornalTotal + adicionalCct1 + adicionalCct2 + adicionalCct3 + totalHorasExtra50 + totalHorasExtra100 + antiguedadTotal;
 
     // Mostrar resultados
     document.getElementById('basic-salary').textContent = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(salarioBasico);
