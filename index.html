@@ -4,24 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Escala Salarial</title>
+    <title>Visor de Categorías y Calculadora</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="container">
-        <h1>Escala Salarial</h1>
-        <div id="data-list">
-            <!-- Los datos se cargarán aquí -->
+        <!-- Sección de categorías -->
+        <div class="category-section">
+            <button id="prev-btn" class="nav-btn">⟵</button>
+            <div id="category" class="category-field">Cargando categoría...</div>
+            <button id="next-btn" class="nav-btn">⟶</button>
         </div>
-        <div id="detail-view" class="hidden">
-            <button id="close-detail">Cerrar</button>
-            <button id="copy-detail">Copiar</button>
-            <div id="detail-content">
-                <!-- Detalles de la fila seleccionada se cargarán aquí -->
-            </div>
+
+        <!-- Detalles de la categoría -->
+        <div id="details" class="details-field">
+            <p>Cargando detalles...</p>
         </div>
+
+        <!-- Formulario de cálculo de sueldos -->
+        <div class="calculation-form">
+            <h2>Calculadora de Sueldos</h2>
+            <label for="dias-trabajados">Días Trabajados:</label>
+            <input type="number" id="dias-trabajados" value="0">
+
+            <label for="horas-extra-50">Horas Extras al 50%:</label>
+            <input type="number" id="horas-extra-50" value="0">
+
+            <label for="horas-extra-100">Horas Extras al 100%:</label>
+            <input type="number" id="horas-extra-100" value="0">
+
+            <label for="antiguedad">Antigüedad (en años):</label>
+            <input type="number" id="antiguedad" value="0">
+
+            <button id="calculate-btn">Calcular</button>
+        </div>
+
+        <!-- Resultado del cálculo -->
+        <div id="calculation-result" class="calculation-result">
+            <h3>Resultado del Cálculo:</h3>
+            <p>Salario Básico: <span id="basic-salary">$ 0.00</span></p>
+            <p>Jornal Total: <span id="jornal-total">$ 0.00</span></p>
+            <p>Adicionales CCT 1: <span id="ad-cct-1">$ 0.00</span></p>
+            <p>Adicionales CCT 2: <span id="ad-cct-2">$ 0.00</span></p>
+            <p>Adicionales CCT 3: <span id="ad-cct-3">$ 0.00</span></p>
+            <p>Horas Extra 50%: <span id="extra-50">$ 0.00</span></p>
+            <p>Horas Extra 100%: <span id="extra-100">$ 0.00</span></p>
+            <p>Antigüedad: <span id="antiguedad-info">$ 0.00</span></p>
+            <p>Haberes: <span id="total-salary">$ 0.00</span></p>
+        </div>
+
     </div>
+
     <script src="script.js"></script>
 </body>
 
