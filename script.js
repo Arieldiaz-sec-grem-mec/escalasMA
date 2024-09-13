@@ -1,98 +1,98 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQlLYnwCnBMNbbtLUspbZXIOJqO6iIIUq7F9Ogto42qmfF4wJ-U-EqD1VrIGhBImQ1fcKovodQ2TtLV/pub?gid=0&single=true&output=csv';
-    const dataList = document.getElementById('data-list');
-    const detailView = document.getElementById('detail-view');
-    const detailContent = document.getElementById('detail-content');
-    const closeDetailBtn = document.getElementById('close-detail');
-    const copyDetailBtn = document.getElementById('copy-detail');
+const apiUrl = 'https://script.google.com/macros/s/AKfycbzrsDHezYeOCaOt_Q26pBC5c5SktmBPN3vN1HxLa4VqlnhPZPt3epms0YsUXsGRRvEREg/exec';
+let categories = [];
+let currentIndex = 0;
 
-    fetch(sheetUrl)
-        .then(response => response.text())
-        .then(data => {
-            const rows = parseCSV(data);
-            let listHtml = '';
+// Obtener datos desde el Apps Script
+fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+        categories = data;
+        showCategory();
+    })
+    .catch(error => console.error('Error al obtener los datos:', error));
 
-            // Generar el HTML para cada ítem de datos
-            rows.slice(1).forEach(row => {
-                listHtml += `<div class="data-item" data-row='${JSON.stringify(row)}'>${row[0]}</div>`;
-            });
+const categoryField = document.getElementById('category');
+const detailsField = document.getElementById('details');
+const resultDetails = document.getElementById('result-details');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const calculateBtn = document.getElementById('calculate-btn');
 
-            dataList.innerHTML = listHtml;
+// Mostrar la categoría actual
+function showCategory() {
+    if (categories.length > 0) {
+        const currentCategory = categories[currentIndex];
+        categoryField.textContent = currentCategory['Categoría'];
+        showDetails(currentCategory);
+    }
+}
 
-            // Añadir evento de clic a los ítems de datos
-            dataList.addEventListener('click', event => {
-                if (event.target.classList.contains('data-item')) {
-                    const row = JSON.parse(event.target.getAttribute('data-row'));
-                    const headers = [
-                        'Categoria',
-                        'Sueldo básico mensual',
-                        'Sueldo básico jornal',
-                        'Hora ex. 50 %',
-                        'Hora ex. 100 %',
-                        'Viatico', // Cambia "Columna 6" por el nombre real de la columna
-                        'Comida'  // Cambia "Columna 7" por el nombre real de la columna
-                    ];
+// Mostrar detalles de la categoría
+function showDetails(category) {
+    const currencyFormatter = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' });
 
-                    // Mostrar los detalles en el modal
-                    detailContent.innerHTML = headers.map((header, index) =>
-                        `<p class="label">${header} : ${row[index] || ''}</p>`
-                    ).join('');
-                    detailView.classList.remove('hidden');
-                    detailView.style.transform = 'scale(1)'; // Restablece el efecto de acercamiento
-                }
-            });
+    detailsField.innerHTML = `
+        <div class="detail-item"><span>Salario Básico:</span> ${currencyFormatter.format(parseFloat(category['Salario Básico']))}</div>
+        <div class="detail-item"><span>Jornal:</span> ${currencyFormatter.format(parseFloat(category['Jornal']))}</div>
+        <div class="detail-item"><span>Hora Extra 50%:</span> ${currencyFormatter.format(parseFloat(category['Hora Extra 50%']))}</div>
+        <div class="detail-item"><span>Hora Extra 100%:</span> ${currencyFormatter.format(parseFloat(category['Hora Extra 100%']))}</div>
+        <div class="detail-item"><span>Ad cct 1:</span> ${parseFloat(category['Ad cct 1'])} %</div>
+        <div class="detail-item"><span>Ad cct 2:</span> ${parseFloat(category['Ad cct 2'])} %</div>
+        <div class="detail-item"><span>Ad cct 3:</span> ${parseFloat(category['Ad cct 3'])} %</div>
+    `;
+}
 
-            // Añadir evento para cerrar la vista de detalles
-            closeDetailBtn.addEventListener('click', () => {
-                detailView.classList.add('hidden');
-            });
-
-            // Añadir evento para copiar los detalles al portapapeles
-            copyDetailBtn.addEventListener('click', () => {
-                const textToCopy = detailContent.innerText;
-
-                navigator.clipboard.writeText(textToCopy).then(() => {
-                    alert('Detalles copiados al portapapeles.');
-                }).catch(err => {
-                    console.error('Error al copiar al portapapeles: ', err);
-                });
-            });
-        })
-        .catch(error => {
-            console.error('Error al cargar los datos:', error);
-            dataList.innerHTML = '<div>No se pudieron cargar los datos.</div>';
-        });
+// Navegar entre categorías
+prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex === 0) ? categories.length - 1 : currentIndex - 1;
+    showCategory();
 });
 
-// Función para parsear el CSV
-function parseCSV(data) {
-    const rows = [];
-    let row = [];
-    let cell = '';
-    let insideQuote = false;
+nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex === categories.length - 1) ? 0 : currentIndex + 1;
+    showCategory();
+});
 
-    for (const char of data) {
-        if (char === '"') {
-            insideQuote = !insideQuote;
-        } else if (char === ',' && !insideQuote) {
-            row.push(cell.trim());
-            cell = '';
-        } else if (char === '\n' && !insideQuote) {
-            row.push(cell.trim());
-            rows.push(row);
-            row = [];
-            cell = '';
-        } else {
-            cell += char;
-        }
-    }
+// Cálculo dinámico de sueldo
+// Función para calcular el total y mostrar los detalles
+calculateBtn.addEventListener('click', () => {
+    const diasTrabajados = parseFloat(document.getElementById('dias-trabajados').value);
+    const horasExtra50 = parseFloat(document.getElementById('horas-extra-50').value);
+    const horasExtra100 = parseFloat(document.getElementById('horas-extra-100').value);
+    const antiguedad = parseFloat(document.getElementById('antiguedad').value);
 
-    if (cell) {
-        row.push(cell.trim());
-    }
-    if (row.length) {
-        rows.push(row);
-    }
+    const category = categories[currentIndex];
 
-    return rows;
-}
+    const salarioBasico = parseFloat(category['Salario Básico']);
+    const jornal = parseFloat(category['Jornal']);
+    const horaExtra50 = parseFloat(category['Hora Extra 50%']);
+    const horaExtra100 = parseFloat(category['Hora Extra 100%']);
+    const adCct1 = parseFloat(category['Ad cct 1']);
+    const adCct2 = parseFloat(category['Ad cct 2']);
+    const adCct3 = parseFloat(category['Ad cct 3']);
+
+    const jornalTotal = jornal * diasTrabajados;
+
+    const totalHorasExtra50 = horaExtra50 * horasExtra50;
+    const totalHorasExtra100 = horaExtra100 * horasExtra100;
+
+    const adicionalCct1 = ((jornalTotal + totalHorasExtra50 + totalHorasExtra100) * adCct1) / 100;
+    const adicionalCct2 = ((jornalTotal + totalHorasExtra50 + totalHorasExtra100) * adCct2) / 100;
+    const adicionalCct3 = ((jornalTotal + totalHorasExtra50 + totalHorasExtra100) * adCct3) / 100;
+
+    const antiguedadPorc = antiguedad * 0.01; // 1% por cada año
+    const antiguedadTotal = (jornalTotal + totalHorasExtra50 + totalHorasExtra100 + adicionalCct1 + adicionalCct2 + adicionalCct3) * antiguedadPorc;
+
+    const totalSueldo = salarioBasico + jornalTotal + adicionalCct1 + adicionalCct2 + adicionalCct3 + totalHorasExtra50 + totalHorasExtra100 + antiguedadTotal;
+
+    // Mostrar resultados
+    document.getElementById('basic-salary').textContent = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(salarioBasico);
+    document.getElementById('jornal-total').textContent = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(jornalTotal);
+    document.getElementById('ad-cct-1').textContent = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(adicionalCct1);
+    document.getElementById('ad-cct-2').textContent = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(adicionalCct2);
+    document.getElementById('ad-cct-3').textContent = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(adicionalCct3);
+    document.getElementById('extra-50').textContent = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(totalHorasExtra50);
+    document.getElementById('extra-100').textContent = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(totalHorasExtra100);
+    document.getElementById('antiguedad-info').textContent = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(antiguedadTotal);
+    document.getElementById('total-salary').textContent = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(totalSueldo);
+});
