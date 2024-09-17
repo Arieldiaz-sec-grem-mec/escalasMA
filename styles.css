@@ -1,99 +1,68 @@
-body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
+body {
+    background-color: #e4c513;
     color: #333;
 }
 
-.nav-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.nav-btn:hover {
-    background-color: #45a049;
-}
-
-.category-section {
+.container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
 }
 
-.category-field {
-    margin: 0 20px;
-    font-size: 20px;
-    font-weight: bold;
+.resultados,
+.detalles,
+.formulario {
+    flex: 1;
+    padding: 20px;
+    margin: 0 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.details-field {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-radius: 8px;
-    margin: 20px 0;
-}
-
-.detail-item {
+h2 {
+    color: #007bff;
     margin-bottom: 10px;
 }
 
-.calculation-form {
-    margin-top: 20px;
+form {
+    display: flex;
+    flex-direction: column;
 }
 
-.calculation-form label {
-    display: block;
+label {
     margin-top: 10px;
 }
 
-.calculation-form input {
-    padding: 8px;
-    width: 100%;
+input,
+select,
+button {
     margin-top: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-#calculate-btn {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
     padding: 10px;
-    margin-top: 20px;
-    width: 100%;
-    cursor: pointer;
+    border: 1px solid #ddd;
     border-radius: 5px;
 }
 
-#calculate-btn:hover {
-    background-color: #45a049;
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-.result-box {
-    background-color: #e0ffe0;
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
-    border: 1px solid #cccccc;
+button:hover {
+    background-color: #0056b3;
 }
 
-.result-box h3 {
+#resumen p,
+#detalles p {
     margin-bottom: 10px;
 }
