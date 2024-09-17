@@ -4,56 +4,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visor de Categorías y Calculadora</title>
+    <title>Calculadora de Sueldos</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="container">
-        <!-- Sección de categorías -->
-        <div class="category-section">
-            <button id="prev-btn" class="nav-btn">⟵</button>
-            <div id="category" class="category-field">Cargando categoría...</div>
-            <button id="next-btn" class="nav-btn">⟶</button>
+        <!-- Sección izquierda: Resultados -->
+        <div class="resultados">
+            <h2>Resultados de Cálculos</h2>
+            <div id="resumen">
+                <p><strong>Jornales:</strong> <span id="jornales">---</span></p>
+                <p><strong>Horas extras 50%:</strong> <span id="horas50">---</span></p>
+                <p><strong>Horas extras 100%:</strong> <span id="horas100">---</span></p>
+                <p><strong>Ad CCT 1:</strong> <span id="adicional1">---</span></p>
+                <p><strong>Ad CCT 2:</strong> <span id="adicional2">---</span></p>
+                <p><strong>Ad CCT 3:</strong> <span id="adicional3">---</span></p>
+                <p><strong>Antigüedad:</strong> <span id="antiguedad">---</span></p>
+                <p><strong>Haberes Totales:</strong> <span id="haberesTotales">---</span></p>
+                <p><strong>Viáticos Totales:</strong> <span id="viaticosTotales">---</span></p>
+                <p><strong>Comidas Totales:</strong> <span id="comidasTotales">---</span></p>
+                <p><strong>No Remunerativo:</strong> <span id="noRemunerativo">---</span></p>
+                <p><strong>Descuentos:</strong> <span id="descuentos">---</span></p>
+                <p><strong>Total:</strong> <span id="total">---</span></p>
+            </div>
         </div>
 
-        <!-- Detalles de la categoría -->
-        <div id="details" class="details-field">
-            <p>Cargando detalles...</p>
+        <!-- Sección central: Detalles de Categoría -->
+        <div class="detalles">
+            <h2>Detalles de la Categoría Seleccionada</h2>
+            <p><strong>Sueldo mensual:</strong> <span id="sueldoMensual">---</span></p>
+            <p><strong>Jornal calculado:</strong> <span id="jornal">---</span></p>
+            <p><strong>Horas extras 50% (por unidad):</strong> <span id="extra50">---</span></p>
+            <p><strong>Horas extras 100% (por unidad):</strong> <span id="extra100">---</span></p>
+            <p><strong>Viático:</strong> <span id="viatico">---</span></p>
+            <p><strong>Comida:</strong> <span id="comida">---</span></p>
+            <p><strong>Ad CCT 1:</strong> <span id="adCCT1">---</span></p>
+            <p><strong>Ad CCT 2:</strong> <span id="adCCT2">---</span></p>
+            <p><strong>Ad CCT 3:</strong> <span id="adCCT3">---</span></p>
         </div>
 
-        <!-- Formulario de cálculo de sueldos -->
-        <div class="calculation-form">
-            <h2>Calculadora de Sueldos</h2>
-            <label for="dias-trabajados">Días Trabajados:</label>
-            <input type="number" id="dias-trabajados" value="0">
+        <!-- Sección derecha: Formulario de entrada -->
+        <div class="formulario">
+            <h2>Formulario de Carga</h2>
+            <form id="formulario-calculo">
+                <label for="categoria">Categoría:</label>
+                <select id="categoria">
+                    <option value="">Seleccione una categoría</option>
+                    <!-- Opciones cargadas dinámicamente -->
+                </select>
 
-            <label for="horas-extra-50">Horas Extras al 50%:</label>
-            <input type="number" id="horas-extra-50" value="0">
+                <label for="diasTrabajados">Días trabajados:</label>
+                <input type="number" id="diasTrabajados" min="0" placeholder="Ej: 20">
 
-            <label for="horas-extra-100">Horas Extras al 100%:</label>
-            <input type="number" id="horas-extra-100" value="0">
+                <label for="horas50">Horas extras 50%:</label>
+                <input type="number" id="horas50" min="0" placeholder="Ej: 5">
 
-            <label for="antiguedad">Antigüedad (en años):</label>
-            <input type="number" id="antiguedad" value="0">
+                <label for="horas100">Horas extras 100%:</label>
+                <input type="number" id="horas100" min="0" placeholder="Ej: 3">
 
-            <button id="calculate-btn">Calcular</button>
+                <label for="antiguedad">Antigüedad (%):</label>
+                <input type="number" id="antiguedad" min="0" max="100" placeholder="Ej: 10">
+
+                <button type="button" id="calcular">Calcular</button>
+            </form>
         </div>
-
-        <!-- Resultado del cálculo -->
-        <div id="calculation-result" class="calculation-result">
-            <h3>Resultado del Cálculo:</h3>
-            <p>Salario Básico: <span id="basic-salary">$ 0.00</span></p>
-            <p>Jornal Total: <span id="jornal-total">$ 0.00</span></p>
-            <p>Adicionales CCT 1: <span id="ad-cct-1">$ 0.00</span></p>
-            <p>Adicionales CCT 2: <span id="ad-cct-2">$ 0.00</span></p>
-            <p>Adicionales CCT 3: <span id="ad-cct-3">$ 0.00</span></p>
-            <p>Horas Extra 50%: <span id="extra-50">$ 0.00</span></p>
-            <p>Horas Extra 100%: <span id="extra-100">$ 0.00</span></p>
-            <p>Antigüedad: <span id="antiguedad-info">$ 0.00</span></p>
-            <p>Haberes: <span id="total-salary">$ 0.00</span></p>
-        </div>
-
     </div>
 
     <script src="script.js"></script>
