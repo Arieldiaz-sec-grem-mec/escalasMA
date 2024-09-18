@@ -92,6 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('viaticosTotales').textContent = viaticosTotales.toFixed(2);
             document.getElementById('comidasTotales').textContent = comidasTotales.toFixed(2);
             document.getElementById('noRemunerativo').textContent = noRemunerativo.toFixed(2);
+            document.getElementById('jubilacion').textContent = jubilacion.toFixed(2);
+            document.getElementById('obraSocial').textContent = obraSocial.toFixed(2);
+            document.getElementById('cuotaSindical').textContent = cuotaSindical.toFixed(2);
+            document.getElementById('cct4089').textContent = cct4089.toFixed(2);
             document.getElementById('descuentos').textContent = descuentos.toFixed(2);
             document.getElementById('total').textContent = total.toFixed(2);
 
