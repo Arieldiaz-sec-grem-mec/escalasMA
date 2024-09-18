@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #e4c513;
+    background-color: #000000b3;
     color: #333;
 }
 
@@ -29,7 +29,9 @@ body {
 
 h2 {
     color: #007bff;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 5px;
 }
 
 form {
@@ -48,6 +50,8 @@ button {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 16px;
+    /* Aumenta el tamaño de la fuente */
 }
 
 button {
@@ -56,6 +60,8 @@ button {
     border: none;
     cursor: pointer;
     font-size: 16px;
+    transition: background-color 0.3s;
+    /* Transición suave */
 }
 
 button:hover {
@@ -65,4 +71,57 @@ button:hover {
 #resumen p,
 #detalles p {
     margin-bottom: 10px;
+}
+
+/* Estilos para los párrafos de detalles de descuentos */
+#resumen p strong,
+#detalles p strong {
+    font-weight: bold;
+    color: #007bff;
+    /* Color para los encabezados de detalles */
+}
+
+#resumen p span,
+#detalles p span {
+    font-weight: normal;
+    /* Normaliza el peso de la fuente */
+}
+
+/* Alineación y espaciado */
+#resumen p,
+#detalles p {
+    margin-bottom: 8px;
+}
+
+
+p {
+    display: flex;
+    justify-content: space-between;
+    /* Espacia los elementos */
+    align-items: center;
+    /* Centra verticalmente */
+    margin-bottom: 10px;
+    /* Espaciado entre párrafos */
+}
+
+span {
+    flex: 1;
+    /* Permite que el primer span ocupe el espacio */
+}
+
+#resumen p strong,
+#detalles p strong {
+    font-weight: bold;
+    color: #007bff;
+    /* Color para los encabezados de detalles */
+}
+
+/* Opcional: Añadir un poco de margen a los valores para mejor separación */
+span[id] {
+    margin-left: 10px;
+    /* Espacio entre el texto y el valor */
+    text-align: right;
+    /* Alinear texto a la derecha */
+    min-width: 80px;
+    /* Establecer un ancho mínimo para alinear valores */
 }
