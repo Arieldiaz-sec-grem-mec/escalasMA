@@ -6,8 +6,8 @@
 }
 
 body {
-    background-color: #000000b3;
-    color: #333;
+    background-color: #1d6ab7e3;
+    color: #000000;
 }
 
 .container {
@@ -77,7 +77,7 @@ button:hover {
 #resumen p strong,
 #detalles p strong {
     font-weight: bold;
-    color: #007bff;
+    color: #03101f;
     /* Color para los encabezados de detalles */
 }
 
@@ -112,16 +112,60 @@ span {
 #resumen p strong,
 #detalles p strong {
     font-weight: bold;
-    color: #007bff;
+    color: #030e1a;
     /* Color para los encabezados de detalles */
 }
 
 /* Opcional: Añadir un poco de margen a los valores para mejor separación */
 span[id] {
-    margin-left: 10px;
+    margin-left: 5px;
     /* Espacio entre el texto y el valor */
     text-align: right;
     /* Alinear texto a la derecha */
     min-width: 80px;
     /* Establecer un ancho mínimo para alinear valores */
+}
+
+/* Línea divisoria debajo del párrafo de Antigüedad */
+#resumen p:nth-child(7) {
+    /* Selecciona el séptimo párrafo (Antigüedad) */
+    border-bottom: 2px solid #007bff;
+    /* Línea negra */
+    padding-bottom: 10px;
+    /* Espacio adicional debajo de la línea */
+    margin-bottom: 20px;
+    /* Aumenta el espacio inferior para separar de Viáticos */
+}
+
+/* Línea divisoria debajo del párrafo de Antigüedad */
+#resumen p:nth-child(9) {
+    /* Selecciona el séptimo párrafo (Antigüedad) */
+    border-bottom: 2px solid #007bff;
+    /* Línea negra */
+    padding-bottom: 10px;
+    /* Espacio adicional debajo de la línea */
+    margin-bottom: 20px;
+    /* Aumenta el espacio inferior para separar de Viáticos */
+}
+
+/* Línea divisoria debajo del párrafo de Antigüedad */
+#resumen p:nth-child(14) {
+    /* Selecciona el séptimo párrafo (Antigüedad) */
+    border-bottom: 2px solid #007bff;
+    /* Línea negra */
+    padding-bottom: 10px;
+    /* Espacio adicional debajo de la línea */
+    margin-bottom: 20px;
+    /* Aumenta el espacio inferior para separar de Viáticos */
+}
+
+/* Línea divisoria debajo del párrafo de Antigüedad */
+#resumen p:nth-child(17) {
+    /* Selecciona el séptimo párrafo (Antigüedad) */
+    border-bottom: 2px solid #007bff;
+    /* Línea negra */
+    padding-bottom: 10px;
+    /* Espacio adicional debajo de la línea */
+    margin-bottom: 20px;
+    /* Aumenta el espacio inferior para separar de Viáticos */
 }
