@@ -1,0 +1,95 @@
+/* General layout */
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 20px;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Table headers */
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: left;
+    border-bottom: 2px solid #000;
+    padding: 10px;
+}
+
+/* Table rows */
+td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Totals and summary */
+.summary {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.summary p {
+    margin: 5px 0;
+}
+
+.total {
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: right;
+    font-weight: bold;
+}
+
+/* Signatures */
+.signatures {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.signature {
+    border-top: 1px solid #000;
+    width: 45%;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 14px;
+    font-style: italic;
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+}
+
+/* Optional print-specific styles */
+@media print {
+    body {
+        color: #000;
+    }
+
+    th,
+    td {
+        border: 1px solid #000;
+    }
+
+    .total {
+        font-size: 20px;
+    }
+}
