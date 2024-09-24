@@ -38,6 +38,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cargarCSV();
 
+    // Función para formatear en pesos argentinos
+    function formatearPesos(valor) {
+        return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(valor);
+    }
+
     calcularBtn.addEventListener('click', () => {
         const categoria = categoriaSelect.value;
         const diasTrabajados = parseFloat(document.getElementById('diasTrabajados').value) || 0;
@@ -110,32 +115,71 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function mostrarResultados(total, datos, adicionalCCT1, adicionalCCT2, adicionalCCT3) {
-        document.getElementById('jornales').textContent = total.jornales.toFixed(2);
-        document.getElementById('horasExtras50').textContent = total.horasExtras50.toFixed(2);
-        document.getElementById('horasExtras100').textContent = total.horasExtras100.toFixed(2);
-        document.getElementById('adicional1').textContent = total.adicionalCCT1Monto.toFixed(2);
-        document.getElementById('adicional2').textContent = total.adicionalCCT2Monto.toFixed(2);
-        document.getElementById('adicional3').textContent = total.adicionalCCT3Monto.toFixed(2);
-        document.getElementById('antiguedadMonto').textContent = total.antiguedadMonto.toFixed(2);
-        document.getElementById('haberesTotales').textContent = total.haberesTotales.toFixed(2);
-        document.getElementById('viaticosTotales').textContent = total.viaticosTotales.toFixed(2);
-        document.getElementById('comidasTotales').textContent = total.comidasTotales.toFixed(2);
-        document.getElementById('noRemunerativo').textContent = total.noRemunerativo.toFixed(2);
-        document.getElementById('jubilacion').textContent = total.jubilacion.toFixed(2);
-        document.getElementById('obraSocial').textContent = total.obraSocial.toFixed(2);
-        document.getElementById('cuotaSindical').textContent = total.cuotaSindical.toFixed(2);
-        document.getElementById('cct4089').textContent = total.cct4089.toFixed(2);
-        document.getElementById('descuentos').textContent = total.descuentos.toFixed(2);
-        document.getElementById('total').textContent = total.total.toFixed(2);
-
-        document.getElementById('sueldoMensual').textContent = datos.sueldoMensual.toFixed(2);
-        document.getElementById('jornal').textContent = (datos.sueldoMensual / 24).toFixed(2);
-        document.getElementById('extra50').textContent = (datos.sueldoMensual / 128).toFixed(2);
-        document.getElementById('extra100').textContent = (datos.sueldoMensual / 96).toFixed(2);
-        document.getElementById('viatico').textContent = datos.viatico.toFixed(2);
-        document.getElementById('comida').textContent = datos.comida.toFixed(2);
+        document.getElementById('jornales').textContent = formatearPesos(total.jornales);
+        document.getElementById('horasExtras50').textContent = formatearPesos(total.horasExtras50);
+        document.getElementById('horasExtras100').textContent = formatearPesos(total.horasExtras100);
+        document.getElementById('adicional1').textContent = formatearPesos(total.adicionalCCT1Monto);
+        document.getElementById('adicional2').textContent = formatearPesos(total.adicionalCCT2Monto);
+        document.getElementById('adicional3').textContent = formatearPesos(total.adicionalCCT3Monto);
+        document.getElementById('antiguedadMonto').textContent = formatearPesos(total.antiguedadMonto);
+        document.getElementById('haberesTotales').textContent = formatearPesos(total.haberesTotales);
+        document.getElementById('viaticosTotales').textContent = formatearPesos(total.viaticosTotales);
+        document.getElementById('comidasTotales').textContent = formatearPesos(total.comidasTotales);
+        document.getElementById('noRemunerativo').textContent = formatearPesos(total.noRemunerativo);
+        document.getElementById('jubilacion').textContent = formatearPesos(total.jubilacion);
+        document.getElementById('obraSocial').textContent = formatearPesos(total.obraSocial);
+        document.getElementById('cuotaSindical').textContent = formatearPesos(total.cuotaSindical);
+        document.getElementById('cct4089').textContent = formatearPesos(total.cct4089);
+        document.getElementById('descuentos').textContent = formatearPesos(total.descuentos);
+        document.getElementById('total').textContent = formatearPesos(total.total);
+        document.getElementById('sueldoMensual').textContent = formatearPesos(datos.sueldoMensual);
+        document.getElementById('jornal').textContent = formatearPesos(datos.sueldoMensual / 24);
+        document.getElementById('extra50').textContent = formatearPesos(datos.sueldoMensual / 128);
+        document.getElementById('extra100').textContent = formatearPesos(datos.sueldoMensual / 96);
+        document.getElementById('viatico').textContent = formatearPesos(datos.viatico);
+        document.getElementById('comida').textContent = formatearPesos(datos.comida);
         document.getElementById('adCCT1').textContent = `${adicionalCCT1}%`;
         document.getElementById('adCCT2').textContent = `${adicionalCCT2}%`;
         document.getElementById('adCCT3').textContent = `${adicionalCCT3}%`;
     }
+
+    // Crear botón de imprimir
+    const imprimirBtn = document.createElement('button');
+    imprimirBtn.textContent = 'Imprimir';
+    imprimirBtn.type = 'button';
+    imprimirBtn.id = 'imprimir';
+    imprimirBtn.className = 'boton-imprimir'; // Puedes agregar clases para el estilo
+    document.getElementById('formulario-calculo').appendChild(imprimirBtn);
+
+    // Funcionalidad del botón de imprimir
+    imprimirBtn.addEventListener('click', () => {
+        const ventanaImpresion = window.open('', '', 'width=800,height=600');
+        ventanaImpresion.document.write('<html><head><title>Imprimir Resultados</title>');
+        // Enlazar el archivo CSS externo
+        ventanaImpresion.document.write('<link rel="stylesheet" type="text/css" href="print.css">');
+        ventanaImpresion.document.write('</head><body>');
+        ventanaImpresion.document.write('<h1>Recibo de Sueldo</h1>');
+
+        // Mostrar todos los resultados en la ventana de impresión
+        ventanaImpresion.document.write('<p><strong>Jornales:</strong> ' + document.getElementById('jornales').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Horas extras 50%:</strong> ' + document.getElementById('horasExtras50').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Horas extras 100%:</strong> ' + document.getElementById('horasExtras100').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Ad CCT 1:</strong> ' + document.getElementById('adicional1').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Ad CCT 2:</strong> ' + document.getElementById('adicional2').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Ad CCT 3:</strong> ' + document.getElementById('adicional3').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Antigüedad:</strong> ' + document.getElementById('antiguedadMonto').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Haberes Totales:</strong> ' + document.getElementById('haberesTotales').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Viático Total:</strong> ' + document.getElementById('viaticosTotales').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Comida Total:</strong> ' + document.getElementById('comidasTotales').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>No Remunerativo:</strong> ' + document.getElementById('noRemunerativo').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Jubilación:</strong> ' + document.getElementById('jubilacion').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Obra Social:</strong> ' + document.getElementById('obraSocial').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Cuota Sindical:</strong> ' + document.getElementById('cuotaSindical').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>CCT 40/89:</strong> ' + document.getElementById('cct4089').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Descuentos Totales:</strong> ' + document.getElementById('descuentos').textContent + '</p>');
+        ventanaImpresion.document.write('<p><strong>Total Neto:</strong> ' + document.getElementById('total').textContent + '</p>');
+        ventanaImpresion.document.write('</body></html>');
+        ventanaImpresion.document.close();
+        ventanaImpresion.print();
+    });
 });
