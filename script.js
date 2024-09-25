@@ -154,32 +154,117 @@ document.addEventListener('DOMContentLoaded', () => {
     // Funcionalidad del botón de imprimir
     imprimirBtn.addEventListener('click', () => {
         const ventanaImpresion = window.open('', '', 'width=800,height=600');
-        ventanaImpresion.document.write('<html><head><title>Imprimir Resultados</title>');
-        // Enlazar el archivo CSS externo
-        ventanaImpresion.document.write('<link rel="stylesheet" type="text/css" href="print.css">');
+        ventanaImpresion.document.write('<html><head><title>Imprimir Recibo de Sueldo</title>');
+
+        // Estilos en línea dentro del script para formato parecido al PDF
+        ventanaImpresion.document.write(`
+            <style>
+                body {
+                    font-family: Arial, sans-serif;
+                    padding: 20px;
+                }
+                h1 {
+                    text-align: center;
+                    font-size: 22px;
+                    margin-bottom: 20px;
+                }
+                .info-empleado, .totales {
+                    width: 100%;
+                    margin-bottom: 20px;
+                }
+                .info-empleado td, .info-empleado th {
+                    padding: 8px;
+                    text-align: left;
+                }
+                .info-empleado th {
+                    font-weight: bold;
+                    text-align: right;
+                }
+                .recibo {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-bottom: 20px;
+                }
+                .recibo th, .recibo td {
+                    border: 1px solid #000;
+                    padding: 8px;
+                    text-align: left;
+                }
+                .recibo th {
+                    background-color: #f2f2f2;
+                }
+                .totales {
+                    width: 100%;
+                    border-collapse: collapse;
+                }
+                .totales th, .totales td {
+                    padding: 8px;
+                    text-align: right;
+                }
+                .totales td {
+                    font-weight: bold;
+                }
+                .separador {
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                    border-top: 1px solid #000;
+                }
+            </style>
+        `);
+
         ventanaImpresion.document.write('</head><body>');
         ventanaImpresion.document.write('<h1>Recibo de Sueldo</h1>');
 
-        // Mostrar todos los resultados en la ventana de impresión
-        ventanaImpresion.document.write('<p><strong>Jornales:</strong> ' + document.getElementById('jornales').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Horas extras 50%:</strong> ' + document.getElementById('horasExtras50').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Horas extras 100%:</strong> ' + document.getElementById('horasExtras100').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Ad CCT 1:</strong> ' + document.getElementById('adicional1').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Ad CCT 2:</strong> ' + document.getElementById('adicional2').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Ad CCT 3:</strong> ' + document.getElementById('adicional3').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Antigüedad:</strong> ' + document.getElementById('antiguedadMonto').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Haberes Totales:</strong> ' + document.getElementById('haberesTotales').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Viático Total:</strong> ' + document.getElementById('viaticosTotales').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Comida Total:</strong> ' + document.getElementById('comidasTotales').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>No Remunerativo:</strong> ' + document.getElementById('noRemunerativo').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Jubilación:</strong> ' + document.getElementById('jubilacion').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Obra Social:</strong> ' + document.getElementById('obraSocial').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Cuota Sindical:</strong> ' + document.getElementById('cuotaSindical').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>CCT 40/89:</strong> ' + document.getElementById('cct4089').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Descuentos Totales:</strong> ' + document.getElementById('descuentos').textContent + '</p>');
-        ventanaImpresion.document.write('<p><strong>Total Neto:</strong> ' + document.getElementById('total').textContent + '</p>');
+        // Información del empleado y de pago
+        ventanaImpresion.document.write(`
+            <table class="info-empleado">
+                <tr>
+                    <th>Periodo de pago:</th><td>1/5/2024</td>
+                    <th>Fecha de pago:</th><td>1/6/2024</td>
+                </tr>
+                <tr>
+                    <th>Categoría:</th><td>Oficial</td>
+                    <th>Convenio:</th><td>CCT 40/89</td>
+                </tr>
+            </table>
+        `);
+
+        ventanaImpresion.document.write('<div class="separador"></div>');
+
+        // Formato de tabla para los datos del recibo
+        ventanaImpresion.document.write('<table class="recibo">');
+        ventanaImpresion.document.write('<tr><th>Concepto</th><th>Valor</th></tr>');
+
+        ventanaImpresion.document.write('<tr><td>Jornales</td><td>' + document.getElementById('jornales').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>Horas extras 50%</td><td>' + document.getElementById('horasExtras50').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>Horas extras 100%</td><td>' + document.getElementById('horasExtras100').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>Ad CCT 1</td><td>' + document.getElementById('adicional1').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>Ad CCT 2</td><td>' + document.getElementById('adicional2').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>Ad CCT 3</td><td>' + document.getElementById('adicional3').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>Antigüedad</td><td>' + document.getElementById('antiguedadMonto').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>Haberes Totales</td><td>' + document.getElementById('haberesTotales').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>Viático Total</td><td>' + document.getElementById('viaticosTotales').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>Comida Total</td><td>' + document.getElementById('comidasTotales').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>No Remunerativo</td><td>' + document.getElementById('noRemunerativo').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>Jubilación</td><td>' + document.getElementById('jubilacion').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>Obra Social</td><td>' + document.getElementById('obraSocial').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>Cuota Sindical</td><td>' + document.getElementById('cuotaSindical').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>CCT 40/89</td><td>' + document.getElementById('cct4089').textContent + '</td></tr>');
+        ventanaImpresion.document.write('<tr><td>Descuentos Totales</td><td>' + document.getElementById('descuentos').textContent + '</td></tr>');
+
+        ventanaImpresion.document.write('</table>');
+
+        ventanaImpresion.document.write('<div class="separador"></div>');
+
+        // Totales
+        ventanaImpresion.document.write(`
+            <table class="totales">
+                <tr><th>Total Neto:</th><td>` + document.getElementById('total').textContent + `</td></tr>
+            </table>
+        `);
+
         ventanaImpresion.document.write('</body></html>');
         ventanaImpresion.document.close();
         ventanaImpresion.print();
     });
-});
+});    
