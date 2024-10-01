@@ -1,13 +1,16 @@
+/* Configuración de estilo base */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
 }
 
 body {
-    background-color: #055f18e3;
-    color: #000000;
+    background-color: #e9f5e9;
+    /* Color de fondo suave */
+    color: #333;
+    /* Color de texto oscuro */
 }
 
 .container {
@@ -16,24 +19,32 @@ body {
     padding: 20px;
 }
 
+/* Estilos para los contenedores */
 .resultados,
 .detalles,
 .formulario {
     flex: 1;
     padding: 20px;
     margin: 0 10px;
-    background-color: #fff;
+    background-color: #ffffff;
+    /* Fondo blanco para contenedores */
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
 }
 
+/* Estilos de encabezados */
 h2 {
     color: #007bff;
+    /* Color azul para los encabezados */
     margin-bottom: 15px;
     border-bottom: 2px solid #007bff;
     padding-bottom: 5px;
+    font-size: 1.5em;
+    /* Tamaño de fuente más grande */
 }
 
+/* Estilos de formularios */
 form {
     display: flex;
     flex-direction: column;
@@ -41,131 +52,200 @@ form {
 
 label {
     margin-top: 10px;
+    font-weight: bold;
+    /* Negrita para etiquetas */
 }
 
+/* Estilos de inputs y botones */
 input,
 select,
 button {
     margin-top: 5px;
-    padding: 10px;
-    border: 1px solid #ddd;
+    padding: 12px;
+    /* Espaciado más amplio */
+    border: 1px solid #ccc;
+    /* Borde gris claro */
     border-radius: 5px;
     font-size: 16px;
-    /* Aumenta el tamaño de la fuente */
 }
 
 button {
     background-color: #007bff;
+    /* Color de fondo azul */
     color: #fff;
+    /* Color de texto blanco */
     border: none;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
     /* Transición suave */
 }
 
 button:hover {
     background-color: #0056b3;
+    /* Color más oscuro al pasar el mouse */
+    transform: translateY(-2px);
+    /* Elevación ligera al pasar el mouse */
 }
 
+/* Estilos de resultados y detalles */
 #resumen p,
 #detalles p {
     margin-bottom: 10px;
+    display: flex;
+    /* Flexbox para alineación */
+    justify-content: space-between;
+    /* Alinea los elementos de manera uniforme */
+    align-items: center;
+    /* Centra verticalmente los elementos */
 }
 
-/* Estilos para los párrafos de detalles de descuentos */
 #resumen p strong,
 #detalles p strong {
     font-weight: bold;
     color: #03101f;
-    /* Color para los encabezados de detalles */
 }
 
 #resumen p span,
 #detalles p span {
     font-weight: normal;
-    /* Normaliza el peso de la fuente */
 }
 
-/* Alineación y espaciado */
-#resumen p,
-#detalles p {
-    margin-bottom: 8px;
+/* Alineación y espaciado de los párrafos */
+.align-left {
+    flex: 2;
+    /* Espacio para el concepto */
+    text-align: left;
+    /* Alineación a la izquierda */
 }
 
+.align-center {
+    flex: 1;
+    /* Espacio para la cantidad */
+    text-align: center;
+    /* Alineación al centro */
+}
 
-p {
+.align-right {
+    flex: 1;
+    /* Espacio para el total */
+    text-align: right;
+    /* Alineación a la derecha */
+}
+
+/* Ancho fijo para las cantidades */
+.cantidad {
+    min-width: 100px;
+    /* Ancho mínimo para las cantidades */
+}
+
+/* Estilos generales para la impresión */
+@media print {
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+    }
+
+    /* Esconder elementos no necesarios en la impresión */
+    #formulario-calculo,
+    #imprimir {
+        display: none;
+    }
+
+    .recibo {
+        border: 1px solid #000;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: none;
+        /* Eliminar sombra en impresión */
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        font-size: 20px;
+        margin: 15px 0;
+        border-bottom: 1px solid #000;
+    }
+
+    .detalle {
+        margin: 5px 0;
+    }
+
+    .resumen {
+        font-weight: bold;
+        margin-top: 20px;
+    }
+}
+
+.resultados p {
     display: flex;
     justify-content: space-between;
-    /* Espacia los elementos */
-    align-items: center;
-    /* Centra verticalmente */
-    margin-bottom: 10px;
-    /* Espaciado entre párrafos */
 }
 
-span {
+.resultados p strong {
+    flex: 2;
+    text-align: left;
+}
+
+.resultados p .align-center {
     flex: 1;
-    /* Permite que el primer span ocupe el espacio */
+    text-align: center;
 }
 
-#resumen p strong,
-#detalles p strong {
-    font-weight: bold;
-    color: #030e1a;
-    /* Color para los encabezados de detalles */
-}
-
-/* Opcional: Añadir un poco de margen a los valores para mejor separación */
-span[id] {
-    margin-left: 5px;
-    /* Espacio entre el texto y el valor */
+.resultados p .align-right {
+    flex: 1;
     text-align: right;
-    /* Alinear texto a la derecha */
-    min-width: 80px;
-    /* Establecer un ancho mínimo para alinear valores */
 }
 
-/* Línea divisoria debajo del párrafo de Antigüedad */
-#resumen p:nth-child(7) {
-    /* Selecciona el séptimo párrafo (Antigüedad) */
-    border-bottom: 2px solid #007bff;
-    /* Línea negra */
-    padding-bottom: 10px;
-    /* Espacio adicional debajo de la línea */
-    margin-bottom: 20px;
-    /* Aumenta el espacio inferior para separar de Viáticos */
+
+
+/* Estilos para los párrafos dentro de resultados */
+.resultados p {
+    border: 1px solid #ccc;
+    /* Borde gris claro */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    padding: 10px;
+    /* Espacio interno */
+    margin-bottom: 10px;
+    /* Espacio entre filas */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    background-color: #f9f9f9;
+    /* Fondo claro para las filas */
 }
 
-/* Línea divisoria debajo del párrafo de Antigüedad */
-#resumen p:nth-child(9) {
-    /* Selecciona el séptimo párrafo (Antigüedad) */
-    border-bottom: 2px solid #007bff;
-    /* Línea negra */
-    padding-bottom: 10px;
-    /* Espacio adicional debajo de la línea */
-    margin-bottom: 20px;
-    /* Aumenta el espacio inferior para separar de Viáticos */
+/* Opcional: Estilo de color al pasar el mouse */
+.resultados p:hover {
+    background-color: #f0f0f0;
+    /* Cambia el color de fondo al pasar el mouse */
 }
 
-/* Línea divisoria debajo del párrafo de Antigüedad */
-#resumen p:nth-child(14) {
-    /* Selecciona el séptimo párrafo (Antigüedad) */
-    border-bottom: 2px solid #007bff;
-    /* Línea negra */
-    padding-bottom: 10px;
-    /* Espacio adicional debajo de la línea */
-    margin-bottom: 20px;
-    /* Aumenta el espacio inferior para separar de Viáticos */
+/* Estilos para los párrafos dentro de detalles */
+.detalles p {
+    border: 1px solid #ccc;
+    /* Borde gris claro */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    padding: 10px;
+    /* Espacio interno */
+    margin-bottom: 10px;
+    /* Espacio entre filas */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    background-color: #f9f9f9;
+    /* Fondo claro para las filas */
 }
 
-/* Línea divisoria debajo del párrafo de Antigüedad */
-#resumen p:nth-child(17) {
-    /* Selecciona el séptimo párrafo (Antigüedad) */
-    border-bottom: 2px solid #007bff;
-    /* Línea negra */
-    padding-bottom: 10px;
-    /* Espacio adicional debajo de la línea */
-    margin-bottom: 20px;
-    /* Aumenta el espacio inferior para separar de Viáticos */
+/* Opcional: Estilo de color al pasar el mouse */
+.detalles p:hover {
+    background-color: #f0f0f0;
+    /* Cambia el color de fondo al pasar el mouse */
 }
