@@ -115,6 +115,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function mostrarResultados(total, datos, adicionalCCT1, adicionalCCT2, adicionalCCT3) {
+        // Mostrar las cantidades ingresadas
+        document.getElementById('diasTrabajadosValue').textContent = document.getElementById('diasTrabajados').value || 0;
+        document.getElementById('horas50Value').textContent = document.getElementById('horas50').value || 0;
+        document.getElementById('horas100Value').textContent = document.getElementById('horas100').value || 0;
+        document.getElementById('antiguedadValue').textContent = document.getElementById('antiguedad').value || 0;
+
+        // Mostrar los cálculos
         document.getElementById('jornales').textContent = formatearPesos(total.jornales);
         document.getElementById('horasExtras50').textContent = formatearPesos(total.horasExtras50);
         document.getElementById('horasExtras100').textContent = formatearPesos(total.horasExtras100);
@@ -123,8 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adicional3').textContent = formatearPesos(total.adicionalCCT3Monto);
         document.getElementById('antiguedadMonto').textContent = formatearPesos(total.antiguedadMonto);
         document.getElementById('haberesTotales').textContent = formatearPesos(total.haberesTotales);
-        document.getElementById('viaticosTotales').textContent = formatearPesos(total.viaticosTotales);
-        document.getElementById('comidasTotales').textContent = formatearPesos(total.comidasTotales);
         document.getElementById('noRemunerativo').textContent = formatearPesos(total.noRemunerativo);
         document.getElementById('jubilacion').textContent = formatearPesos(total.jubilacion);
         document.getElementById('obraSocial').textContent = formatearPesos(total.obraSocial);
@@ -132,6 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('cct4089').textContent = formatearPesos(total.cct4089);
         document.getElementById('descuentos').textContent = formatearPesos(total.descuentos);
         document.getElementById('total').textContent = formatearPesos(total.total);
+
+        // Mostrar detalles de la categoría
         document.getElementById('sueldoMensual').textContent = formatearPesos(datos.sueldoMensual);
         document.getElementById('jornal').textContent = formatearPesos(datos.sueldoMensual / 24);
         document.getElementById('extra50').textContent = formatearPesos(datos.sueldoMensual / 128);
@@ -141,7 +148,22 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('adCCT1').textContent = `${adicionalCCT1}%`;
         document.getElementById('adCCT2').textContent = `${adicionalCCT2}%`;
         document.getElementById('adCCT3').textContent = `${adicionalCCT3}%`;
+
+        // Mostrar cantidades para viáticos y comidas
+        const diasTrabajados = document.getElementById('diasTrabajados').value || 0;
+        document.getElementById('viaticosCantidad').textContent = diasTrabajados;
+        document.getElementById('comidasCantidad').textContent = diasTrabajados;
+
+        // Calcular y mostrar los totales para viáticos y comidas
+        document.getElementById('viaticosTotales').textContent = formatearPesos(datos.viatico * diasTrabajados);
+        document.getElementById('comidasTotales').textContent = formatearPesos(datos.comida * diasTrabajados);
+
+        // Mostrar cantidades para los adicionales
+        document.getElementById('adCCT1Cantidad').textContent = adicionalCCT1; // Aquí ya se tiene el porcentaje
+        document.getElementById('adCCT2Cantidad').textContent = adicionalCCT2;
+        document.getElementById('adCCT3Cantidad').textContent = adicionalCCT3;
     }
+
 
     // Crear botón de imprimir
     const imprimirBtn = document.createElement('button');
