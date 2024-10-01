@@ -223,10 +223,16 @@ button:hover {
 }
 
 /* Opcional: Estilo de color al pasar el mouse */
+.resultados p {
+    transition: background-color 0.3s ease;
+    /* Agrega una transición suave */
+}
+
 .resultados p:hover {
-    background-color: #f0f0f0;
+    background-color: #92dd08;
     /* Cambia el color de fondo al pasar el mouse */
 }
+
 
 /* Estilos para los párrafos dentro de detalles */
 .detalles p {
@@ -245,7 +251,40 @@ button:hover {
 }
 
 /* Opcional: Estilo de color al pasar el mouse */
+.detalles p {
+    transition: background-color 0.3s ease;
+    /* Agrega una transición suave */
+}
+
 .detalles p:hover {
-    background-color: #f0f0f0;
+    background-color: #92dd08;
     /* Cambia el color de fondo al pasar el mouse */
+}
+
+
+
+/* Estilos para Categoría Seleccionada */
+.detalles p {
+    display: flex;
+    /* Flexbox para alineación */
+    justify-content: space-between;
+    /* Espacio entre conceptos y resultados */
+    align-items: center;
+    /* Centra verticalmente los elementos */
+    margin-bottom: 10px;
+    /* Espacio entre líneas */
+}
+
+.detalles strong {
+    flex: 1;
+    /* Espacio para el concepto */
+    text-align: left;
+    /* Alineación a la izquierda */
+}
+
+.detalles span {
+    flex: 1;
+    /* Espacio para el valor */
+    text-align: right;
+    /* Alineación a la derecha */
 }
