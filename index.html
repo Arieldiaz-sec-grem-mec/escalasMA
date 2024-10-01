@@ -15,27 +15,52 @@
         <div class="resultados">
             <h2>Resultados de Cálculos</h2>
             <div id="resumen">
-                <p><strong>Jornales:</strong> <span id="jornales">---</span></p>
-                <p><strong>Horas extras 50%:</strong> <span id="horasExtras50">---</span></p>
-                <p><strong>Horas extras 100%:</strong> <span id="horasExtras100">---</span></p>
-                <p><strong>Ad CCT 1:</strong> <span id="adicional1">---</span></p>
-                <p><strong>Ad CCT 2:</strong> <span id="adicional2">---</span></p>
-                <p><strong>Ad CCT 3:</strong> <span id="adicional3">---</span></p>
-                <p><strong>Antigüedad:</strong> <span id="antiguedadMonto">---</span></p>
-                <p><strong>Viáticos:</strong> <span id="viaticosTotales">---</span></p>
-                <p><strong>Comidas:</strong> <span id="comidasTotales">---</span></p>
-                <p><strong>Descuentos</strong></p>
-                <p><strong>Jubilación 11%:</strong> <span id="jubilacion">---</span></p>
-                <p><strong>Obra Social 3%:</strong> <span id="obraSocial">---</span></p>
-                <p><strong>Cuota Sindical 3%:</strong> <span id="cuotaSindical">---</span></p>
-                <p><strong>CCT 40/89 3%:</strong> <span id="cct4089">---</span></p>
-                <p><strong>Haberes:</strong> <span id="haberesTotales">---</span></p>
-                <p><strong>No Remunerativo:</strong> <span id="noRemunerativo">---</span></p>
-                <p><strong>Descuentos:</strong> <span id="descuentos">---</span></p>
-                <p><strong>Total:</strong> <span id="total">---</span></p>
+                <p><strong>Jornales:</strong> <span class="align-center cantidad" id="diasTrabajadosValue">0</span>
+                    <span class="align-right cantidad" id="jornales">---</span>
+                </p>
 
+                <p><strong>Horas extras 50%:</strong> <span class="align-center cantidad" id="horas50Value">0</span>
+                    <span class="align-right cantidad" id="horasExtras50">---</span>
+                </p>
+
+                <p><strong>Horas extras 100%:</strong> <span class="align-center cantidad" id="horas100Value">0</span>
+                    <span class="align-right cantidad" id="horasExtras100">---</span>
+                </p>
+
+                <p><strong>Ad CCT 1:</strong> <span class="align-center cantidad" id="adCCT1Cantidad">0%</span> <span
+                        class="align-right cantidad" id="adicional1">---</span></p>
+
+                <p><strong>Ad CCT 2:</strong> <span class="align-center cantidad" id="adCCT2Cantidad">0%</span> <span
+                        class="align-right cantidad" id="adicional2">---</span></p>
+
+                <p><strong>Ad CCT 3:</strong> <span class="align-center cantidad" id="adCCT3Cantidad">0%</span> <span
+                        class="align-right cantidad" id="adicional3">---</span></p>
+
+                <p><strong>Antigüedad:</strong> <span class="align-center cantidad" id="antiguedadValue">0%</span> <span
+                        class="align-right cantidad" id="antiguedadMonto">---</span></p>
+
+
+                <p><strong>Viáticos:</strong> <span class="align-center cantidad" id="viaticosCantidad">0</span> <span
+                        class="align-right cantidad" id="viaticosTotales">---</span></p>
+
+                <p><strong>Comidas:</strong> <span class="align-center cantidad" id="comidasCantidad">0</span> <span
+                        class="align-right cantidad" id="comidasTotales">---</span></p>
+
+
+                <p><strong>Jubilación 11%:</strong> <span class="align-right cantidad" id="jubilacion">---</span></p>
+                <p><strong>Obra Social 3%:</strong> <span class="align-right cantidad" id="obraSocial">---</span></p>
+                <p><strong>Cuota Sindical 3%:</strong> <span class="align-right cantidad" id="cuotaSindical">---</span>
+                </p>
+                <p><strong>CCT 40/89 3%:</strong> <span class="align-right cantidad" id="cct4089">---</span></p>
+                <p><strong>Haberes:</strong> <span class="align-right cantidad" id="haberesTotales">---</span></p>
+                <p><strong>No Remunerativo:</strong> <span class="align-right cantidad" id="noRemunerativo">---</span>
+                </p>
+                <p><strong>Descuentos:</strong> <span class="align-right cantidad" id="descuentos">---</span></p>
+                <p><strong>Total:</strong> <span class="align-right cantidad" id="total">---</span></p>
             </div>
         </div>
+
+
 
         <!-- Sección central: Detalles de Categoría -->
         <div class="detalles">
@@ -131,6 +156,7 @@
                 <input type="number" id="antiguedad" min="0" max="100" placeholder="Ej: 10">
 
                 <button type="button" id="calcular">Calcular</button>
+
             </form>
         </div>
     </div>
