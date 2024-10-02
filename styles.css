@@ -7,10 +7,10 @@
 }
 
 body {
-    background-color: #e9f5e9;
-    /* Color de fondo suave */
-    color: #333;
-    /* Color de texto oscuro */
+    background-color: #f0f4f8;
+    /* Fondo gris suave */
+    color: #2c3e50;
+    /* Texto azul oscuro */
 }
 
 .container {
@@ -28,13 +28,12 @@ body {
     flex: 1;
     padding: 20px;
     margin: 0 10px;
-    background-color: #d1f6ab;
-    /* Fondo claro */
+    background-color: #ffffff;
+    /* Fondo blanco */
     border-radius: 15px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.9);
-    /* Sombra más pronunciada */
-    transition: transform 0.9s, box-shadow 0.9s;
-    /* Suaviza el cambio al pasar sobre ellos */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    transition: transform 0.5s, box-shadow 0.5s;
 }
 
 .resultados:hover,
@@ -43,15 +42,15 @@ body {
     transform: translateY(-5px);
     /* Efecto flotante */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    /* Sombra más profunda al pasar el ratón */
+    /* Sombra más profunda */
 }
 
 /* Estilos de encabezados */
 h2 {
-    color: #092f57;
-    /* Color azul para los encabezados */
+    color: #34495e;
+    /* Azul oscuro */
     margin-bottom: 15px;
-    border-bottom: 2px solid #007bff;
+    border-bottom: 2px solid #2980b9;
     padding-bottom: 5px;
     font-size: 1.7em;
     /* Tamaño de fuente más grande */
@@ -66,8 +65,8 @@ form {
 label {
     margin-top: 10px;
     font-weight: bold;
-    color: #03101f;
-    /* Negrita y color oscuro para etiquetas */
+    color: #2c3e50;
+    /* Negrita y color oscuro */
 }
 
 /* Estilos de inputs y botones */
@@ -79,24 +78,25 @@ button {
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    /* Sombra suave */
-    background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    /* Sombra muy suave */
+    background-color: #ecf0f1;
+    /* Fondo gris claro */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 input:hover,
 select:hover,
 button:hover {
-    background-color: #92dd08;
-    /* Fondo verde claro al pasar el ratón */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background-color: #d0e6f6;
+    /* Fondo azul claro al pasar el ratón */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     /* Sombra más pronunciada */
 }
 
 /* Estilo de los botones */
 button {
-    background-color: #00ccff;
+    background-color: #3498db;
     color: #fff;
     border: none;
     cursor: pointer;
@@ -107,9 +107,9 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #2980b9;
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Estilos de resultados y detalles */
@@ -122,13 +122,13 @@ button:hover {
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background-color: #ecf0f1;
 }
 
 .resultados p:hover,
 .detalles p:hover {
-    background-color: #92dd08;
+    background-color: #d0e6f6;
 }
 
 /* Alineación de los elementos dentro de los párrafos */
@@ -155,7 +155,7 @@ button:hover {
 @media print {
     body {
         font-family: Arial, sans-serif;
-        color: #333;
+        color: #2c3e50;
     }
 
     #formulario-calculo,
@@ -193,15 +193,15 @@ button:hover {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ecf0f1;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .resultados p strong {
     flex: 2;
     text-align: left;
     font-weight: bold;
-    color: #03101f;
+    color: #2c3e50;
 }
 
 .resultados p .valor {
@@ -213,5 +213,5 @@ button:hover {
     flex: 1;
     text-align: right;
     font-weight: normal;
-    color: #333;
+    color: #2c3e50;
 }
