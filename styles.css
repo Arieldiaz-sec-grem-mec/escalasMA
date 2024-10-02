@@ -288,3 +288,51 @@ button:hover {
     text-align: right;
     /* Alineación a la derecha */
 }
+
+/* formulario bordes */
+/* Estilos de inputs, selects y botones (ajustado para que coincida con resultados y detalles) */
+input,
+select,
+button {
+    margin-top: 5px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    /* Bordes redondeados */
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    background-color: #f9f9f9;
+    /* Fondo claro */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    /* Transición suave */
+}
+
+/* Opcional: Efecto hover en campos de formulario */
+input:hover,
+select:hover,
+button:hover {
+    background-color: #92dd08;
+    /* Cambia el color de fondo al pasar el mouse */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* Sombra más prominente al pasar el mouse */
+}
+
+/* Botones ajustados para coincidir con el estilo general */
+button {
+    background-color: #007bff;
+    /* Fondo azul */
+    color: #fff;
+    /* Texto blanco */
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #0056b3;
+    /* Fondo azul oscuro */
+    transform: translateY(-2px);
+    /* Elevación ligera */
+}
