@@ -17,6 +17,8 @@ body {
     display: flex;
     justify-content: space-between;
     padding: 20px;
+    gap: 20px;
+    /* Añade un espacio uniforme entre contenedores */
 }
 
 /* Estilos para los contenedores */
@@ -26,21 +28,32 @@ body {
     flex: 1;
     padding: 20px;
     margin: 0 10px;
-    background-color: #ffffff;
-    /* Fondo blanco para contenedores */
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    /* Sombra suave */
+    background-color: #d1f6ab;
+    /* Fondo claro */
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.9);
+    /* Sombra más pronunciada */
+    transition: transform 0.9s, box-shadow 0.9s;
+    /* Suaviza el cambio al pasar sobre ellos */
+}
+
+.resultados:hover,
+.detalles:hover,
+.formulario:hover {
+    transform: translateY(-5px);
+    /* Efecto flotante */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    /* Sombra más profunda al pasar el ratón */
 }
 
 /* Estilos de encabezados */
 h2 {
-    color: #007bff;
+    color: #092f57;
     /* Color azul para los encabezados */
     margin-bottom: 15px;
     border-bottom: 2px solid #007bff;
     padding-bottom: 5px;
-    font-size: 1.5em;
+    font-size: 1.7em;
     /* Tamaño de fuente más grande */
 }
 
@@ -53,7 +66,8 @@ form {
 label {
     margin-top: 10px;
     font-weight: bold;
-    /* Negrita para etiquetas */
+    color: #03101f;
+    /* Negrita y color oscuro para etiquetas */
 }
 
 /* Estilos de inputs y botones */
@@ -62,93 +76,88 @@ select,
 button {
     margin-top: 5px;
     padding: 12px;
-    /* Espaciado más amplio */
     border: 1px solid #ccc;
-    /* Borde gris claro */
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
+input:hover,
+select:hover,
+button:hover {
+    background-color: #92dd08;
+    /* Fondo verde claro al pasar el ratón */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    /* Sombra más pronunciada */
+}
+
+/* Estilo de los botones */
 button {
-    background-color: #007bff;
-    /* Color de fondo azul */
+    background-color: #00ccff;
     color: #fff;
-    /* Color de texto blanco */
     border: none;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s, transform 0.2s;
-    /* Transición suave */
+    padding: 15px;
+    border-radius: 10px;
+    transition: background-color 0.5s, transform 0.5s;
 }
 
 button:hover {
     background-color: #0056b3;
-    /* Color más oscuro al pasar el mouse */
     transform: translateY(-2px);
-    /* Elevación ligera al pasar el mouse */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Estilos de resultados y detalles */
-#resumen p,
-#detalles p {
-    margin-bottom: 10px;
+.resultados p,
+.detalles p {
     display: flex;
-    /* Flexbox para alineación */
     justify-content: space-between;
-    /* Alinea los elementos de manera uniforme */
     align-items: center;
-    /* Centra verticalmente los elementos */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
 }
 
-#resumen p strong,
-#detalles p strong {
-    font-weight: bold;
-    color: #03101f;
+.resultados p:hover,
+.detalles p:hover {
+    background-color: #92dd08;
 }
 
-#resumen p span,
-#detalles p span {
-    font-weight: normal;
-}
-
-/* Alineación y espaciado de los párrafos */
+/* Alineación de los elementos dentro de los párrafos */
 .align-left {
     flex: 2;
-    /* Espacio para el concepto */
     text-align: left;
-    /* Alineación a la izquierda */
 }
 
 .align-center {
     flex: 1;
-    /* Espacio para la cantidad */
     text-align: center;
-    /* Alineación al centro */
 }
 
 .align-right {
     flex: 1;
-    /* Espacio para el total */
     text-align: right;
-    /* Alineación a la derecha */
 }
 
-/* Ancho fijo para las cantidades */
 .cantidad {
     min-width: 100px;
-    /* Ancho mínimo para las cantidades */
 }
 
-/* Estilos generales para la impresión */
+/* Estilos generales para impresión */
 @media print {
     body {
         font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
         color: #333;
     }
 
-    /* Esconder elementos no necesarios en la impresión */
     #formulario-calculo,
     #imprimir {
         display: none;
@@ -159,180 +168,50 @@ button:hover {
         padding: 20px;
         border-radius: 5px;
         box-shadow: none;
-        /* Eliminar sombra en impresión */
-    }
-
-    h1 {
-        text-align: center;
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-
-    h2 {
-        font-size: 20px;
-        margin: 15px 0;
-        border-bottom: 1px solid #000;
-    }
-
-    .detalle {
-        margin: 5px 0;
-    }
-
-    .resumen {
-        font-weight: bold;
-        margin-top: 20px;
     }
 }
 
+/* Mejoras en responsividad */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
+
+/* Estilos para los párrafos dentro de resultados */
 .resultados p {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .resultados p strong {
     flex: 2;
     text-align: left;
+    font-weight: bold;
+    color: #03101f;
 }
 
-.resultados p .align-center {
+.resultados p .valor {
     flex: 1;
     text-align: center;
 }
 
-.resultados p .align-right {
+.resultados p .resultado {
     flex: 1;
     text-align: right;
-}
-
-
-
-/* Estilos para los párrafos dentro de resultados */
-.resultados p {
-    border: 1px solid #ccc;
-    /* Borde gris claro */
-    border-radius: 10px;
-    /* Bordes redondeados */
-    padding: 10px;
-    /* Espacio interno */
-    margin-bottom: 10px;
-    /* Espacio entre filas */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    /* Sombra suave */
-    background-color: #f9f9f9;
-    /* Fondo claro para las filas */
-}
-
-/* Opcional: Estilo de color al pasar el mouse */
-.resultados p {
-    transition: background-color 0.3s ease;
-    /* Agrega una transición suave */
-}
-
-.resultados p:hover {
-    background-color: #92dd08;
-    /* Cambia el color de fondo al pasar el mouse */
-}
-
-
-/* Estilos para los párrafos dentro de detalles */
-.detalles p {
-    border: 1px solid #ccc;
-    /* Borde gris claro */
-    border-radius: 10px;
-    /* Bordes redondeados */
-    padding: 10px;
-    /* Espacio interno */
-    margin-bottom: 10px;
-    /* Espacio entre filas */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    /* Sombra suave */
-    background-color: #f9f9f9;
-    /* Fondo claro para las filas */
-}
-
-/* Opcional: Estilo de color al pasar el mouse */
-.detalles p {
-    transition: background-color 0.3s ease;
-    /* Agrega una transición suave */
-}
-
-.detalles p:hover {
-    background-color: #92dd08;
-    /* Cambia el color de fondo al pasar el mouse */
-}
-
-
-
-/* Estilos para Categoría Seleccionada */
-.detalles p {
-    display: flex;
-    /* Flexbox para alineación */
-    justify-content: space-between;
-    /* Espacio entre conceptos y resultados */
-    align-items: center;
-    /* Centra verticalmente los elementos */
-    margin-bottom: 10px;
-    /* Espacio entre líneas */
-}
-
-.detalles strong {
-    flex: 1;
-    /* Espacio para el concepto */
-    text-align: left;
-    /* Alineación a la izquierda */
-}
-
-.detalles span {
-    flex: 1;
-    /* Espacio para el valor */
-    text-align: right;
-    /* Alineación a la derecha */
-}
-
-/* formulario bordes */
-/* Estilos de inputs, selects y botones (ajustado para que coincida con resultados y detalles) */
-input,
-select,
-button {
-    margin-top: 5px;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    /* Bordes redondeados */
-    font-size: 16px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    /* Sombra suave */
-    background-color: #f9f9f9;
-    /* Fondo claro */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    /* Transición suave */
-}
-
-/* Opcional: Efecto hover en campos de formulario */
-input:hover,
-select:hover,
-button:hover {
-    background-color: #92dd08;
-    /* Cambia el color de fondo al pasar el mouse */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    /* Sombra más prominente al pasar el mouse */
-}
-
-/* Botones ajustados para coincidir con el estilo general */
-button {
-    background-color: #007bff;
-    /* Fondo azul */
-    color: #fff;
-    /* Texto blanco */
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-button:hover {
-    background-color: #0056b3;
-    /* Fondo azul oscuro */
-    transform: translateY(-2px);
-    /* Elevación ligera */
+    font-weight: normal;
+    color: #333;
 }
