@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const ventanaImpresion = window.open('', '', 'width=800,height=600');
         const fechaActual = new Date().toLocaleDateString(); // Fecha actual en formato local
 
-        ventanaImpresion.document.write('<html><head><title>Imprimir Recibo de Sueldo</title>');
+        ventanaImpresion.document.write('<html><head><title>Control interno Aparicio</title>');
 
         // Estilos en línea para bordes redondeados y estructura organizada
         ventanaImpresion.document.write(`
