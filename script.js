@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ventanaImpresion.document.write(`
             <table class="info-empleado">
                 <tr>
-                    <th>Planilla:</th><td>222</td>
+                    <th>Planilla:</th><td>cct</td>
                     <th>Fecha de cálculo:</th><td>` + fechaActual + `</td>
                 </tr>
                 <tr>
